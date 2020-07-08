@@ -57,6 +57,7 @@
   "General": "普通",
   "Advanced": "高级",
 
+  "Dashboard": "统计图",
   "Admin": "管理员配置",
   "Users": "管理员",
   "Roles": "权限组",
@@ -66,6 +67,10 @@
   "Menu": "菜单",
   "Operation log": "操作日志",
   "Sort order": "排序",
+
+  "Sell out": "是否售罄",
+  "Is able": "是否有客",
+  "Remark": "备注",
 
   "Id": "编号",
   "Category id": "栏目名",

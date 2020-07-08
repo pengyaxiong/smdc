@@ -13,4 +13,13 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
 
+    $router->resource('categories', 'CategoryController');
+
+    $router->resource('food', 'FoodController');
+
+    $router->resource('desks', 'DeskController');
+
+    $router->resource('orders', 'OrderController');
+
+    $router->resource('configs', 'ConfigController');
 });
