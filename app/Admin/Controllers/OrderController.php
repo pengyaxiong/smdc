@@ -52,6 +52,15 @@ class OrderController extends AdminController
         })->expand(function ($model) {
             $foods = $model->products;
 
+            $data=[];
+            foreach ($foods as $key=>$food){
+                $data[$key]['id']=$food['id'];
+                $data[$key]['name']=$food['name'];
+                $data[$key]['num']=$food['num'];
+                $data[$key]['price']=$food['price'];
+                $data[$key]['total_price']=$food['total_price'];
+                $data[$key]['type']=$food['type']?'加菜':'点菜';
+            }
 //            $foods = $model->products->map(function ($model) {
 //                $data = [
 //                    'id' => $model['id'],
@@ -63,7 +72,7 @@ class OrderController extends AdminController
 //                return $data;
 //            });
 
-            return new Table(['ID', '数量','菜名', '单价', '小计'], $foods);
+            return new Table(['ID', '菜名','数量', '单价', '小计','类型'], $data);
         });
 
         $grid->column('remark', __('Remark'));
@@ -141,6 +150,12 @@ class OrderController extends AdminController
             $table->select('id', '菜名')->options($select_staff);
 
             $table->number('num', '数量')->default(1);
+
+
+            $table->select('type', '类型')->options([
+                0=>'点菜',
+                1=>'加菜',
+            ]);
         });
 
         $form->decimal('total_price', __('Total price'));

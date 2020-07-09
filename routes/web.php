@@ -17,14 +17,16 @@
 
 //菜品列表
 Route::get('/', 'IndexController@index');
-//确认订单页
-Route::get('/', 'IndexController@index');
-//下单
-Route::post('/', 'IndexController@index');
-//我的订单页
-Route::get('/', 'IndexController@index');
+//确认订单页&确认加菜页
+Route::get('/order', 'IndexController@order');
 
-//确认加菜页
-Route::get('/', 'IndexController@index');
-//加菜
-Route::post('/', 'IndexController@index');
+//点菜&加菜
+Route::post('/add', 'IndexController@add');
+Route::post('/delete', 'IndexController@delete');
+
+//下单
+Route::post('/do_order', 'IndexController@do_order');
+Route::post('/do_add', 'IndexController@do_add');
+
+//我的订单页
+Route::get('/order_info', 'IndexController@order_info');
