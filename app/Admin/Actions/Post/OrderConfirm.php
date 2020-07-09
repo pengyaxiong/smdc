@@ -21,6 +21,7 @@ class OrderConfirm extends RowAction
 
         $model->status=2;
         $model->save();
+
         return $this->response()->success('确认订单成功.')->refresh();
     }
 

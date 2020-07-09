@@ -107,7 +107,7 @@ class VisualizationController extends Controller
      */
     function order_count()
     {
-        return \Cache::remember('xApi_visualization_top', 60, function () {
+      //  return \Cache::remember('xApi_visualization_top', 60, function () {
 //            DB::enableQueryLog();
             $start = date("Y-m-d H:i:s", $this->month_start);
             $end = date("Y-m-d H:i:s", $this->month_end);
@@ -132,7 +132,7 @@ class VisualizationController extends Controller
                 'orders' => $orders,
             ];
             return $data;
-        });
+    //    });
 
     }
 
