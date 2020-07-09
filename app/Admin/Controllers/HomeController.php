@@ -7,27 +7,31 @@ use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
-
+use Encore\Admin\Widgets\Box;
 class HomeController extends Controller
 {
     public function index(Content $content)
     {
         return $content
-            ->title('Dashboard')
+            ->title('统计图表')
             ->description('Description...')
-            ->row(Dashboard::title())
+//            ->row(Dashboard::title())
             ->row(function (Row $row) {
 
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::environment());
+                $row->column(12, function (Column $column) {
+                    $column->append(new Box('', view('admin.order_status')));
                 });
 
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::extensions());
+                $row->column(12, function (Column $column) {
+                    $column->append(new Box('本月热门销量', view('admin.order_count')));
                 });
 
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::dependencies());
+                $row->column(12, function (Column $column) {
+                    $column->append(new Box('餐桌销售额', view('admin.sales_amount')));
+                });
+
+                $row->column(12, function (Column $column) {
+                    $column->append(new Box('菜品销量情况', view('admin.sales_count')));
                 });
             });
     }

@@ -2,6 +2,9 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Post\OrderConfirm;
+use App\Admin\Actions\Post\OrderOver;
+use App\Admin\Actions\Post\OrderPrint;
 use App\Models\Desk;
 use App\Models\Food;
 use App\Models\Order;
@@ -64,8 +67,30 @@ class OrderController extends AdminController
         });
 
         $grid->column('remark', __('Remark'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('created_at', __('Created at'))->hide();
+        $grid->column('updated_at', __('Updated at'))->hide();
+
+        $grid->filter(function ($filter) {
+
+            $filter->equal('status', __('Status'))->select($this->status);
+
+            $filter->between('created_at', __('Created at'))->date();
+
+        });
+
+        //禁用创建按钮
+        $grid->disableCreateButton();
+
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+            //  $actions->disableEdit();
+             $actions->disableDelete();
+
+            $actions->add(new OrderConfirm());
+            $actions->add(new OrderOver());
+            $actions->add(new OrderPrint());
+        });
+
 
         return $grid;
     }

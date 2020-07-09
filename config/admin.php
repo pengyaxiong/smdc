@@ -378,6 +378,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
+    //'grid_action_class' => \Encore\Admin\Grid\Displayers\Actions::class,
 
     /*
     |--------------------------------------------------------------------------

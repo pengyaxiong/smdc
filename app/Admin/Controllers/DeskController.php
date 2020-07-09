@@ -30,7 +30,7 @@ class DeskController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('image', __('二维码'))->display(function (){
-            return '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$_SERVER['HTTP_HOST'].'/desk/'.$this->id.'&amp;size=100x100" alt="" title="" />';
+            return '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$_SERVER['HTTP_HOST'].'?desk_id='.$this->id.'&amp;size=100x100" alt="" title="" />';
         });
         $grid->column('name', __('Name'));
 
@@ -45,6 +45,15 @@ class DeskController extends AdminController
         $grid->column('sort_order', __('Sort order'))->sortable()->editable()->help('按数字大小正序排序');
         $grid->column('created_at', __('Created at'))->hide();
         $grid->column('updated_at', __('Updated at'))->hide();
+
+        $grid->filter(function ($filter) {
+
+            $filter->equal('is_able', __('Is able'))->select([
+                1 => '无客',
+                0 => '有客',
+            ]);
+
+        });
 
         return $grid;
     }

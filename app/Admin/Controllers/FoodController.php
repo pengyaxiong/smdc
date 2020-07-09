@@ -36,6 +36,8 @@ class FoodController extends AdminController
         $grid->column('type', __('Type'))->pluck('name')->label();
         $grid->column('description', __('Description'));
         $grid->column('price', __('Price'));
+        $grid->column('unit', __('Unit'))->editable();
+        $grid->column('sale_num', __('Sale num'))->sortable()->editable()->help('按数字大小正序排序');
         $states = [
             'on' => ['value' => 1, 'text' => '是', 'color' => 'danger'],
             'off' => ['value' => 0, 'text' => '否', 'color' => 'success'],
@@ -89,6 +91,8 @@ class FoodController extends AdminController
         $show->field('type', __('Type'));
         $show->field('description', __('Description'));
         $show->field('price', __('Price'));
+        $show->field('unit', __('Unit'));
+        $show->field('sale_num', __('Sale num'));
         $show->field('sell_out', __('Sell out'));
         $show->field('sort_order', __('Sort order'));
         $show->field('created_at', __('Created at'));
@@ -120,7 +124,9 @@ class FoodController extends AdminController
 
         $form->textarea('description', __('Description'))->rules('required');
         $form->decimal('price', __('Price'))->default(99.00);
+        $form->text('unit', __('Unit'))->rules('required');
 
+        $form->number('sale_num', __('Sale num'))->default(1);
         $hot_states = [
             'on' => ['value' => 1, 'text' => '是', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],

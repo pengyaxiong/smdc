@@ -38,9 +38,20 @@ class Order extends Model
                 $products[$key]['name']=$food->name;
                 $products[$key]['price']=$food->price;
                 $products[$key]['total_price']=$food->price*$product['num'];
+
+
+//                OrderFood::create([
+//                    'order_id'=>$model->id,
+//                    'desk_id'=>$model->desk_id,
+//                    'food_id'=>$product['id'],
+//                    'num'=>$product['num'],
+//                    'price'=>$food->price,
+//                    'total_price'=>$food->price*$product['num']
+//                ]);
             }
 
             $model->products= $products;
+
         });
     }
 }
