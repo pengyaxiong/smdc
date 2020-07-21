@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Post\OrderConfirm;
 use App\Admin\Actions\Post\OrderOver;
 use App\Admin\Actions\Post\OrderPrint;
+use App\Models\Customer;
 use App\Models\Desk;
 use App\Models\Food;
 use App\Models\Order;
@@ -40,6 +41,7 @@ class OrderController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('order_sn', __('Order sn'));
         $grid->column('desk.name', __('餐桌编号'));
+        $grid->column('customer.nickname', __('Nickname'));
         $grid->column('status', __('Status'))->using($this->status)->label([
             1 => 'default',
             2 => 'info',
@@ -75,11 +77,22 @@ class OrderController extends AdminController
             return new Table(['ID', '菜名','数量', '单价', '小计','类型'], $data);
         });
 
+        $grid->column('type', __('支付类型'))->using([
+            0 => '余额支付',
+            1 => '线下支付',
+        ], '未知')->dot([
+            1 => 'primary',
+            0 => 'success',
+        ], 'warning');
         $grid->column('remark', __('Remark'));
         $grid->column('created_at', __('Created at'))->hide();
         $grid->column('updated_at', __('Updated at'))->hide();
 
         $grid->filter(function ($filter) {
+
+            $customers=Customer::all()->pluck('nickname','id');
+
+            $filter->equal('customer_id', __('Nickname'))->select($customers);
 
             $filter->equal('status', __('Status'))->select($this->status);
 

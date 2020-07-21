@@ -24,4 +24,9 @@ class Food extends Model
     {
         $this->attributes['type'] = json_encode(array_values($type));
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

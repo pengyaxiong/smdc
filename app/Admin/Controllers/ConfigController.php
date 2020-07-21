@@ -27,7 +27,8 @@ class ConfigController extends AdminController
         $grid = new Grid(new Config());
 
         $grid->column('id', __('Id'));
-        $grid->column('banner', __('Banner'))->carousel();
+        $grid->column('image', __('Image'))->image();
+//        $grid->column('banner', __('Banner'))->carousel();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
 
@@ -60,7 +61,8 @@ class ConfigController extends AdminController
         $show = new Show(Config::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('banner', __('Banner'));
+//        $show->field('banner', __('Banner'));
+        $show->field('image', __('Image'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -76,7 +78,8 @@ class ConfigController extends AdminController
     {
         $form = new Form(new Config());
 
-        $form->multipleImage('banner', __('Banner'))->rules('required|image')->removable()->sortable();
+//        $form->multipleImage('banner', __('Banner'))->rules('required|image')->removable()->sortable();
+        $form->image('image', __('Image'))->rules('required|image');
 
         return $form;
     }

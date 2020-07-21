@@ -15,6 +15,11 @@ class Order extends Model
         return $this->belongsTo(Desk::class);
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
     public function getProductsAttribute($products)
     {
         return array_values(json_decode($products, true) ?: []);

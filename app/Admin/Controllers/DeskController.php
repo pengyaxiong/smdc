@@ -30,7 +30,7 @@ class DeskController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('image', __('二维码'))->display(function (){
-            return '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$_SERVER['HTTP_HOST'].'?desk_id='.$this->id.'&amp;size=100x100" alt="" title="" />';
+            return '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$_SERVER['HTTP_HOST'].'/wechat/index?desk_id='.$this->id.'&amp;size=100x100" alt="" title="" />';
         });
         $grid->column('name', __('Name'));
 

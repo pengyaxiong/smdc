@@ -22,4 +22,8 @@ Route::group([
     $router->resource('orders', 'OrderController');
 
     $router->resource('configs', 'ConfigController');
+
+    $router->resource('customers', 'CustomerController');
+
+    $router->resource('bills', 'BillController');
 });
